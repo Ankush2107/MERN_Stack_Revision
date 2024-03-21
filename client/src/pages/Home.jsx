@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import WorkoutDetails from "../components/WorkoutDetails";
 import axios from 'axios';
 import WorkoutForm from "../components/WorkoutForm";
+import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
 const Home = () => {
-    const [workouts, setWorkouts] = useState(null);
+
+  const { workouts, dispatch } = useWorkoutsContext()
 
     useEffect(() => {
       const fetchWorkouts = async () => {
@@ -14,8 +16,7 @@ const Home = () => {
               // Check if the response is successful
               if (response.status === 200) {
                 // Update state with the fetched data
-                setWorkouts(response.data);
-                 
+                 dispatch({type: 'SET_WORKOUTS', payload: response.data})
               } else {
                 // Handle errors if the response is not successful
                 console.error("Failed to fetch data:", response.statusText);
