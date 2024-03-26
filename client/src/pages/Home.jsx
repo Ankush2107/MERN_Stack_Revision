@@ -5,8 +5,9 @@ import WorkoutForm from "../components/WorkoutForm";
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
 const Home = () => {
 
-  const { workouts, dispatch } = useWorkoutsContext()
-
+  const { workouts, dispatch } = useWorkoutsContext();
+  
+  // Fetching the data
     useEffect(() => {
       const fetchWorkouts = async () => {
           try {
